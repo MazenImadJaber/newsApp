@@ -2,15 +2,25 @@ import { useState, useEffect } from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { GlobalLayout } from "../components/Layout";
 import { newsAPIKey } from "../secrets";
+import { GlobalStyles } from "../styles/global";
 
 export default function NewsScreen() {
   const [articles, setArticles] = useState([]);
   const [headline, setHeadline] = useState("");
+  const globalStyles = GlobalStyles();
+
 
   const setRandomHeadline = (articles) => {
-    const randomIndex = Math.floor(Math.random() * articles.length);
-    const randomArticle = articles[randomIndex];
-    setHeadline(randomArticle.title);
+    if(articles){
+        const randomIndex = Math.floor(Math.random() * articles.length);
+        const randomArticle = articles[randomIndex];
+        setHeadline(randomArticle.title);
+
+    }
+    else{
+        setHeadline("Loading...");
+    }
+  
   };
 
   const fetchArticles = async () => {
@@ -35,7 +45,7 @@ export default function NewsScreen() {
         onPress={() => setRandomHeadline(articles)}
         style={styles.touchable}
       >
-        <Text>{headline}</Text>
+        <Text style={globalStyles.text}>{headline}</Text>
       </TouchableOpacity>
     </GlobalLayout>
   );

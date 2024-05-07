@@ -1,9 +1,12 @@
 import { Text, Switch, View, StyleSheet } from "react-native";
 import { useState } from "react";
 import { GlobalLayout } from "../components/Layout";
+import { useTheme } from "../context/theme";
+import { GlobalStyles } from "../styles/global";
 
 export default function SettingsScreen() {
-  const [isLargeText, setIsLargeText] = useState(false);
+    const { isLargeText, setIsLargeText } = useTheme();
+    const globalStyles = GlobalStyles();
 
   return (
     <GlobalLayout>
@@ -13,7 +16,7 @@ export default function SettingsScreen() {
           onValueChange={() => setIsLargeText(!isLargeText)}
           trackColor={{ false: "#767577", true: "#81b0ff" }}
         />
-        <Text>Large Text</Text>
+        <Text style={globalStyles.text}>Large Text</Text>
       </View>
     </GlobalLayout>
   );
