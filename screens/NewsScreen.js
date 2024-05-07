@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { GlobalLayout } from "../components/Layout";
-import { newsAPIKey } from "../secrets";
 import { GlobalStyles } from "../styles/global";
 
 export default function NewsScreen() {
